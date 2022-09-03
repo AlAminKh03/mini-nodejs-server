@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1",
+        "gender": "Male",
+        "name": "Henry Cavill",
+        "contact": "123456",
+        "address": "Rome,Italy",
+        "photoUrl": "https://media.istockphoto.com/photos/night-office-young-japanese-man-in-working-on-desktop-computer-team-picture-id1356364230?b=1&k=20&m=1356364230&s=170667a&w=0&h=iX4WeqL8E4rUGnzU1eMx5y1f6b2bMD1caqxfAesZIUQ="
+    },
+    {
+        "id": "2",
+        "gender": "Male",
+        "name": "Ben Affleck",
+        "contact": "03853053",
+        "address": "Boston",
+        "photoUrl": "https://m.media-amazon.com/images/M/MV5BMzczNzNiMDAtMmUzZS00MTkwLWIwOTYtNmYyNjg3MTVkNThhXkEyXkFqcGdeQXVyMjA4MjI5MTA@._V1_UY317_CR12,0,214,317_AL_.jpghttps://m.media-amazon.com/images/M/MV5BMzczNzNiMDAtMmUzZS00MTkwLWIwOTYtNmYyNjg3MTVkNThhXkEyXkFqcGdeQXVyMjA4MjI5MTA@._V1_UY317_CR12,0,214,317_AL_.jpg"
+    },
+    {
+        "id": "3",
+        "gender": "female",
+        "name": "Margot Robbie",
+        "contact": "45804357",
+        "address": "Sydney,Australia",
+        "photoUrl": "https://media.istockphoto.com/photos/night-office-young-japanese-man-in-working-on-desktop-computer-team-picture-id1356364230?b=1&k=20&m=1356364230&s=170667a&w=0&h=iX4WeqL8E4rUGnzU1eMx5y1f6b2bMD1caqxfAesZIUQ="
+    },
+    {
+        "id": "4",
+        "gender": "female",
+        "name": "Saide Sink",
+        "contact": "83483425",
+        "address": "California",
+        "photoUrl": "https://media.istockphoto.com/photos/night-office-young-japanese-man-in-working-on-desktop-computer-team-picture-id1356364230?b=1&k=20&m=1356364230&s=170667a&w=0&h=iX4WeqL8E4rUGnzU1eMx5y1f6b2bMD1caqxfAesZIUQ="
+    },
+    {
+        "id": "5",
+        "gender": "female",
+        "name": "Kamrunnahar Kania",
+        "contact": "387427824",
+        "address": "Nyaranganj,Dhaka",
+        "photoUrl": "https://media.istockphoto.com/photos/night-office-young-japanese-man-in-working-on-desktop-computer-team-picture-id1356364230?b=1&k=20&m=1356364230&s=170667a&w=0&h=iX4WeqL8E4rUGnzU1eMx5y1f6b2bMD1caqxfAesZIUQ="
+    },
+    {
+        "id": "6",
+        "gender": "female",
+        "name": "Shopia lilly",
+        "contact": "+0837393",
+        "address": "England",
+        "photoUrl": "https://media.istockphoto.com/photos/night-office-young-japanese-man-in-working-on-desktop-computer-team-picture-id1356364230?b=1&k=20&m=1356364230&s=170667a&w=0&h=iX4WeqL8E4rUGnzU1eMx5y1f6b2bMD1caqxfAesZIUQ="
+    }
+]
