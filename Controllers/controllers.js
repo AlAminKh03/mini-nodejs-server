@@ -71,10 +71,46 @@ const createUser = (req, res) => {
 
 }
 
-const updateUser = (req, res) => {
-    const _id = req.params.id;
 
-    const { id, name, gender, contact, address, photoUrl } = req.body;
+const updateUser = (req, res) => {
+
+    let newId;
+    const { id, gender, name, contact, address, photoUrl } = req.body
+
+    fs.readFile("users.json", (err, data) => {
+        if (err) {
+            res.status(403).json({ message: "data was not found" })
+        }
+        else {
+            let parsedData = JSON.parse(data);
+            if (!gender || !name || !contact || !address || !photoUrl) {
+                return res.status(403).json({ error: "Please provide gender, name, contact, address, photoUrl property." })
+            }
+            if (id) {
+                newId = id
+            } else {
+                newId = Math.floor(Math.random() * (parsedData.length - 1)) + 1;
+            }
+            const updatedUser = { id: newId, gender, name, contact, address, photoUrl }
+            const userExist = parsedData.find(user => user.id == Number(newId))
+            if (!userExist) {
+                res.status(403).json({ error: "User data not found" })
+            } else if (updatedUser) {
+                parsedData = parsedData.map(user => user.id != Number(newId) ? user : updatedUser)
+                fs.writeFile("users.json", JSON.stringify(parsedData), (err) => {
+                    if (err) {
+                        res.status(500).json({ error: "Internal Server Error" })
+
+                    }
+                    else {
+                        res.status(201).json({ message: "User data updated successfully" })
+                    }
+                })
+
+            }
+
+        }
+    })
 }
 
 module.exports = { randomUser, allUser, createUser, updateUser }

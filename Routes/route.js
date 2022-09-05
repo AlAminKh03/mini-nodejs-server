@@ -5,6 +5,6 @@ const { randomUser, allUser, createUser, updateUser } = require('../Controllers/
 router.get('/user/random', randomUser)
 router.get('/user/all', allUser)
 router.post('/user/save', createUser)
-router.patch('/user/update/:id', updateUser)
+router.patch('/user/update', updateUser)
 
 module.exports = router
