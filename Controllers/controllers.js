@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 const file = path.join(process.cwd(), 'users.json');
 let data = fs.readFileSync("users.json")
 let parsedData = JSON.parse(file)
