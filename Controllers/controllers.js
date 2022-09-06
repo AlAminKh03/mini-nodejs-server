@@ -1,16 +1,28 @@
 const fs = require('fs')
+let data = fs.readFileSync("users.json")
+let parsedData = JSON.parse(data)
 
 // 1. getting a random user 
 const randomUser = (req, res) => {
-    fs.readFile("users.json", (err, data) => {
-        if (err) {
-            res.send('data was not found')
-        } else {
-            const users = JSON.parse(data)
-            const randomUser = users[Math.floor(Math.random() * users.length) + 1]
-            res.send(JSON.stringify(randomUser))
-        }
-    })
+    // fs.readFile("users.json", (err, data) => {
+    //     if (err) {
+    //         res.send('data was not found')
+    //     } else {
+    //         const users = JSON.parse(data)
+    //         const randomUser = users[Math.floor(Math.random() * users.length) + 1]
+    //         res.send(JSON.stringify(randomUser))
+    //     }
+    // })
+    const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+    if (data) {
+        const randomNum = random(1, parsedData.length)
+        const randomUser = parsedData.find(user => user.Id == Number(randomNum))
+        res.status(200).json({ data: randomUser })
+    } else {
+        res.status(500).json({ error: "Internal Server Error!" })
+
+    }
 }
 
 
