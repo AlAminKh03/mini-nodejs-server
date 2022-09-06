@@ -171,8 +171,9 @@ const deleteUser = (req, res) => {
         }
         else {
             const remainingUsers = parsedData.filter(data => {
-                data.id == Number(id)
+                return data.id != Number(id)
             })
+            console.log(remainingUsers);
             if (isNaN(Number(id)) || !id) {
                 res.status(403).json({ error: "id was not found" })
             }
@@ -180,11 +181,18 @@ const deleteUser = (req, res) => {
                 res.status(403).json({ error: "user not found" })
             }
             else if (remainingUsers) {
-                fs.writeFile("users.json", JSON.stringify(parsedData))
+                fs.writeFile("users.json", JSON.stringify(remainingUsers), (err) => {
+                    if (err) {
+                        res.status(403).json({ message: "data can't delete properly" })
+                    }
+                    else {
+                        res.status(200).json({ message: "data deleted successfully" })
+                    }
+                })
             }
         }
     })
 
 }
 
-module.exports = { randomUser, allUser, createUser, updateUser, bulkUpdate }
+module.exports = { randomUser, allUser, createUser, updateUser, bulkUpdate, deleteUser }
