@@ -1,9 +1,11 @@
 import express from "express"
 import cors from 'cors';
-const port = process.env.port || 5000;
-const app = express();
 import fs from 'fs'
 import bodyParser from 'body-parser'
+const port = process.env.port || 5000;
+const app = express();
+let userData = fs.readFileSync("users.json")
+let parsedData = JSON.parse(userData)
 // const file = path.join(process.cwd(), 'users.json');
 
 app.use(cors())
@@ -14,15 +16,21 @@ app.use(bodyParser.json())
 // 1.get a random user 
 
 const randomUser = (req, res) => {
-    fs.readFile("users.json", (err, data) => {
-        if (err) {
-            res.send('data was not found')
-        } else {
-            const users = JSON.parse(data)
-            const randomUser = users[Math.floor(Math.random() * users.length) + 1]
-            res.send(JSON.stringify(randomUser))
-        }
-    })
+    // fs.readFile("users.json", (err, data) => {
+    //     if (err) {
+    //         res.send('data was not found')
+    //     } else {
+    //         const users = JSON.parse(data)
+    //         const randomUser = users[Math.floor(Math.random() * users.length) + 1]
+    //         res.send(JSON.stringify(randomUser))
+    //     }
+    // })
+    if (parsedData) {
+        const randomUser = parsedData[Math.floor(Math.random() * parsedData.length) + 1]
+        res.send(JSON.stringify(randomUser))
+    } else {
+        res.send("data was not found")
+    }
 }
 
 
