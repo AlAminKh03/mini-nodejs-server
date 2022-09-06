@@ -1,10 +1,8 @@
 const express = require('express');
-const fs = require('fs')
 const cors = require('cors')
-const port = 5000;
+const port = process.env.port || 5000;
 const app = express();
 const bodyParser = require('body-parser');
-const { appendFile } = require('fs/promises');
 const useRouter = require("./Routes/route")
 
 
