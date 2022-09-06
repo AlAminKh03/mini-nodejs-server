@@ -13,12 +13,13 @@ const randomUser = (req, res) => {
     //         res.send(JSON.stringify(randomUser))
     //     }
     // })
+    console.log(parsedData)
     const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
     if (data) {
         const randomNum = random(1, parsedData.length)
-        const randomUser = parsedData.find(user => user.Id == Number(randomNum))
-        res.status(200).json({ data: randomUser })
+        const randomUsers = parsedData.find(user => user.id == Number(randomNum))
+        res.status(200).json({ data: randomUsers })
     } else {
         res.status(500).json({ error: "Internal Server Error!" })
 
