@@ -1,6 +1,4 @@
-import { readFileSync, writeFileSync } from 'fs';
 import express from "express"
-import path from 'path';
 import cors from 'cors';
 const port = process.env.port || 5000;
 const app = express();
@@ -8,20 +6,12 @@ import fs from 'fs'
 import bodyParser from 'body-parser'
 // const file = path.join(process.cwd(), 'users.json');
 
-
-
-
-
-
-
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.json())
 
 
 // 1.get a random user 
-
-
 
 const randomUser = (req, res) => {
     fs.readFile("users.json", (err, data) => {
@@ -42,7 +32,7 @@ const allUser = (req, res) => {
 
     fs.readFile("users.json", (err, data) => {
         if (err) {
-            res.send('data was not found')
+            res.send(`${data} was not found`)
 
         } else {
             const parsedData = JSON.parse(data)
