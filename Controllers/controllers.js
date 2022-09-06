@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-
+// 1. getting a random user 
 const randomUser = (req, res) => {
     fs.readFile("users.json", (err, data) => {
         if (err) {
@@ -13,6 +13,8 @@ const randomUser = (req, res) => {
     })
 }
 
+
+// 2.getting all users 
 const allUser = (req, res) => {
     const { limit } = req.query;
 
@@ -28,6 +30,8 @@ const allUser = (req, res) => {
     })
 }
 
+
+// 3. posting users 
 const createUser = (req, res) => {
 
     const { id, name, gender, contact, address, photoUrl } = req.body;
@@ -71,7 +75,7 @@ const createUser = (req, res) => {
 
 }
 
-
+// 4. updating a random user 
 const updateUser = (req, res) => {
 
     let newId;
@@ -113,4 +117,74 @@ const updateUser = (req, res) => {
     })
 }
 
-module.exports = { randomUser, allUser, createUser, updateUser }
+
+// 5. updating multiple users 
+const bulkUpdate = (req, res) => {
+    const { id, gender, name, contact, address, photoUrl } = req.body;
+    const updatedUser = { id, gender, name, contact, address, photoUrl };
+    fs.readFile("users.json", (err, data) => {
+        let parsedData = JSON.parse(data)
+        if (err) {
+            res.status(404).json({ error: "User was not found" })
+        }
+        else {
+            if (!id || !gender || !name || !contact || !address || !photoUrl) {
+                res.status(403).json({ message: "Please provide id, name ,gender, contact, address and photoUrl" })
+            };
+
+            id.forEach(singleId => {
+                if (isNaN(singleId) || !singleId) {
+                    res.status(403).json({ error: "id is not valid" })
+                }
+            });
+
+            parsedData.forEach(singleUser => {
+                id.filter(singleId => singleUser.id == singleId ? updateUser(singleUser) : null)
+
+            })
+
+            function updateUser(singleUser) {
+                parsedData = parsedData.map(data => {
+                    data.id == singleUser.id ? { ...updatedUser, id: singleUser.id } : data
+                })
+            };
+            fs.writeFile("users.json", jSON.stringify(parsedData), (err) => {
+                if (err) {
+                    res.status(403).json({ error: "data can not be updated" })
+                }
+                else {
+                    res.status(200).json({ message: "Data updated successfully" })
+                }
+            })
+
+        };
+    })
+}
+
+
+const deleteUser = (req, res) => {
+    const { id } = req.body;
+    fs.readFile("users.json", (err, data) => {
+        let parsedData = JSON.parse(data);
+        if (err) {
+            res.status(403).json({ error: "data was not found" })
+        }
+        else {
+            const remainingUsers = parsedData.filter(data => {
+                data.id == Number(id)
+            })
+            if (isNaN(Number(id)) || !id) {
+                res.status(403).json({ error: "id was not found" })
+            }
+            else if (parsedData.length === remainingUsers.length) {
+                res.status(403).json({ error: "user not found" })
+            }
+            else if (remainingUsers) {
+                fs.writeFile("users.json", JSON.stringify(parsedData))
+            }
+        }
+    })
+
+}
+
+module.exports = { randomUser, allUser, createUser, updateUser, bulkUpdate }
