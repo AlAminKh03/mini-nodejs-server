@@ -1,6 +1,7 @@
 const fs = require('fs')
+const file = path.join(process.cwd(), 'users.json');
 let data = fs.readFileSync("users.json")
-let parsedData = JSON.parse(data)
+let parsedData = JSON.parse(file)
 
 // 1. getting a random user 
 const randomUser = (req, res) => {
