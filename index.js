@@ -16,12 +16,13 @@ app.use(express.json())
 // 1.get a random user 
 
 const randomUser = (req, res) => {
-    fs.readFile("users.json", (err, data) => {
+    fs.readFile("./users.json", (err, data) => {
         if (err) {
             res.send('data was not found')
         } else {
             const users = JSON.parse(data)
             const randomUser = users[Math.floor(Math.random() * users.length) + 1]
+            console.log(randomUser)
             res.send(JSON.stringify(randomUser))
         }
     })
