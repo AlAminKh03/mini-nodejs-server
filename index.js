@@ -5,6 +5,8 @@ require("dotenv").config()
 const fs = require('fs')
 const port = process.env.port || 5000;
 const app = express();
+const path = require('path');
+const dirPath = path.join(__dirname, '/users.json');
 
 
 // const file = path.join(process.cwd(), 'users.json');
@@ -17,7 +19,7 @@ app.use(express.json())
 // 1.get a random user 
 
 const randomUser = (req, res) => {
-    fs.readFile(__dirname, "/users.json", (err, data) => {
+    fs.readFile(dirPath, (err, data) => {
         if (err) {
             res.send('data was not found')
         } else {
