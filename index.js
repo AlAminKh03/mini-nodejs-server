@@ -16,7 +16,7 @@ app.use(express.json())
 // 1.get a random user 
 
 const randomUser = (req, res) => {
-    fs.readFile("./users.json", (err, data) => {
+    fs.readFile(__dirname, "users.json", (err, data) => {
         if (err) {
             res.send('data was not found')
         } else {
